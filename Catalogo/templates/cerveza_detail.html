@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card text-white bg-dark">
+    <div class="card-body">
+      <h1 class="card-title">{{ cerveza.nombre }}</h1>
+
+      <img src="{{ cerveza.foto.url }}" alt="{{ cerveza.nombre }}" class="img-fluid mb-3" style="max-width: 300px;"
+
+      <p><strong>Estilo:</strong> {{ cerveza.estilo.nombre }}</p>
+      <p><strong>Alcohol:</strong> {{ cerveza.porcentaje_alcohol }}%</p>
+      <p><strong>IBU:</strong> {{ cerveza.ibu }}</p>
+      <p><strong>Descripción:</strong> {{ cerveza.descripcion }}</p>
+
+      <hr>
+      <h4 class="mt-4">Barriles disponibles:</h4>
+      <ul class="list-group list-group-flush">
+        {% for barril in barriles %}
+          <li class="list-group-item bg-secondary text-white">
+            {{ barril.litros }}L - Precio estimado: ${{ barril.calcular_precio }}
+            <br><img src="{{ barril.cerveza.foto.url }}" alt="{{ barril.cerveza.nombre }}" width="100" class="mt-2">
+          </li>
+        {% empty %}
+          <li class="list-group-item bg-secondary text-white">No hay barriles disponibles.</li>
+        {% endfor %}
+      </ul>
+
+      <div class="mt-4">
+        <form action=""></form>
+        <a href="{% url 'cerveza_update' cerveza.id %}" class="btn btn-warning">Editar</a>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmarEliminacionModal{{ cerveza.id }}">Eliminar</button>
+        <a href="{% url 'cervezas' %}" class="btn btn-secondary">Volver al listado</a>
+
+        <!-- Modal de confirmación -->
+        <div class="modal fade" id="confirmarEliminacionModal{{ cerveza.id }}" tabindex="-1" aria-labelledby="modalLabel{{ cerveza.id }}" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel{{ cerveza.id }}">Confirmar eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+              </div>
+              <div class="modal-body text-dark">
+                ¿Estás seguro que quieres eliminar la chopera {{ chopera.numero }}?
+              </div>
+              <div class="modal-footer">
+                <form method="post" action="{% url 'cerveza_delete' cerveza.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

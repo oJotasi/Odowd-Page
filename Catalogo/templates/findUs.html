@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center align-items-center text-center g-5">
+        <!-- Columna de información de contacto -->
+         <div class="mb-4">
+                <h2 class="mb-3 text-white">Dónde encontrarnos</h2>
+                <p class="lead text-muted">Te esperamos en los locales donde se encuentran nuestros productos.</p>
+            </div>
+        <div class="col-lg-5 col-md-6 col-12" >
+            <h5 class="mb-4 text-white"><strong>Contact</strong> Information</h5>
+
+            <p class="text-white mb-2" >
+                <a style="color: #E0C74D;" href="tel:1202403600" class="site-footer-link d-block">
+                    (+54) 9 387-571-6153
+                </a>
+            </p>
+
+            <p class="text-white mb-4">
+                <a style="color: #E0C74D;" href="mailto:info@yourgmail.com" class="site-footer-link d-block">
+                    odowdBeer@gmail.com
+                </a>
+            </p>
+
+            <ul class="social-icon d-flex justify-content-center gap-3 mt-4">
+                <li class="social-icon-item">
+                    <a href="https://www.instagram.com/cervezaodowd/" target="_blank" class="social-icon-link bi-facebook"></a>
+                </li>
+                <li class="social-icon-item">
+                    <a href="https://www.instagram.com/cervezaodowd/" target="_blank" class="social-icon-link bi-instagram"></a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Columna del mapa -->
+        <div class="col-lg-7 col-md-6 col-12">
+
+            <div class="google-map mx-auto" style="max-width: 100%;">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.5258957453366!2d-65.50689632539854!3d-24.845882077938764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941be9f10af23eb3%3A0x8d8145dde7d184ab!2sHangar%20Bar!5e0!3m2!1ses!2sar!4v1750918341331!5m2!1ses!2sar" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

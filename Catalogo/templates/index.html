@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- SECCIÓN HERO -->
+<section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <h1 class="text-white mb-lg-3 mb-4"><strong>O'dowd</strong></h1>
+                <p class="text-black">Get the most professional beer for you</p>
+                <br>
+                <a class="btn custom-btn custom-border-btn custom-btn-bg-white smoothscroll me-2 mb-2" href="#section_2">
+                    About Us
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-block d-lg-flex flex-column justify-content-center align-items-center">
+        <img src="{% static 'imgs/fondo2.jpg' %}" class="custom-block-image img-fluid" alt="O'dowd Logo">
+        <h4><strong class="text-white">Hurry Up!</strong></h4>
+    </div>
+</section>
+
+<!-- SECCIÓN ABOUT US -->
+<section id="section_2" class="container py-5 " style="background-color:rgb(12, 9, 42);">
+    <div class="container">
+        <h2 class="mb-4 text-center" style="color: #E0C74D;">Sobre Nosotros</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <p>Somos una empresa familiar. Nuestro compromiso es hacer la mejor cerveza... ni más ni menos 💫🍻.</p>
+                <p>Absolutamente comprometidos con la calidad, empleamos maltas, lúpulos y levaduras totalmente naturales, sin ningún tipo de agregados, químicos o conservantes ⭐.</p>
+                <p>El Valle de Lerma nos regala su agua de un pozo surgente ubicado a 1.342 m.s.n.m. Por ese don de la naturaleza y por nuestra visión, sostenemos el cuidado del medio ambiente y el uso sustentable de los recursos 🌍.</p>
+                <p><strong>O’Dowd</strong>, espíritu libre, pasión y trabajo... cervezas únicas 💚💛.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

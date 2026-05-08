@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="featured-section section-padding">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center mb-5">
+        <h2>Nuestros Servicios</h2>
+        <p><strong>Elegí el mejor servicio para tu evento o bar</strong></p>
+        {% if user.is_authenticated %}<a href="{% url 'servicio_crear' %}" class="btn btn-success mb-3">Nuevo servicio</a>{% endif %}
+      </div>
+      
+
+      {% for servicio in servicios %}
+        <div class="col-lg-6 col-md-6 mb-5">
+          <div class="services-thumb p-3" style="min-height: 500px;">
+            {% if servicio.foto %}
+              <img src="{{ servicio.foto.url }}" alt="{{ servicio.nombre }}" class="services-image img-fluid mb-3">
+            {% endif %}
+
+            <div class="services-info text-center" style="color: #1a1a1a;">
+              <h4 style="color: #FDBB2D;">{{ servicio.nombre }}</h4>
+              <p style="color: #FDBB2D;">{{ servicio.descripcion }}</p>
+              
+              <!--<div class="mt-4">
+                <span class="services-thumb-price" style="
+                    background-color: #f0f0f0;
+                    color: #333;
+                    font-size: 18px;
+                    display: inline-block;
+                    text-align: center;
+                    margin: 0 auto;
+                ">
+                  ${{ servicio.precio }}
+                </span>
+              </div>-->
+              {% if user.is_authenticated %}
+              <div class="mt-4 d-flex justify-content-center gap-2">
+                <a href="{% url 'servicio_editar' servicio.pk %}" class="btn btn-outline-primary btn-sm">Editar</a>
+                <!-- Botón para abrir la modal -->
+                 <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{ servicio.id }}">
+                  Eliminar
+                </button>
+                <!-- Modal de confirmación -->
+                 <div class="modal fade" id="eliminarModal{{ servicio.id }}" tabindex="-1" role="dialog" aria-labelledby="eliminarModalLabel{{ servicio.id }}" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <form action="{% url 'servicio_eliminar' servicio.pk %}" method="post">
+                        {% csrf_token %}
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="eliminarModalLabel{{ servicio.id }}">Confirmar eliminación</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          ¿Estás seguro de que deseas eliminar {{ servicio.nombre }}?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12">
+          <p class="text-white">No hay servicios disponibles por el momento.</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

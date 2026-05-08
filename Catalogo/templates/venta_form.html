@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if form.non_field_errors %}
+  <div class="alert alert-danger">
+    {{ form.non_field_errors }}
+  </div>
+{% endif %}
+
+<div class="container mt-5">
+    <h2 style="color: white;">Realizar Compra</h2>
+    <p><strong>Cerveza:</strong> {{ cerveza.nombre }}</p>
+    <p><strong>Servicio:</strong> {{ servicio.nombre }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.barril.label_tag }} {{ form.barril }}
+        {{ form.cantidad.label_tag }} {{ form.cantidad }} <br>
+        {{ form.fecha_alquiler.label_tag }} {{ form.fecha_alquiler }}
+
+        <!-- Campos de ubicación -->
+        <div class="form-group mt-3">
+            <label for="id_provincia">Provincia:</label>
+            <select name="provincia" id="id_provincia" class="form-control" required>
+                <option value="">Seleccione una provincia</option>
+                <option value="Salta">Salta</option>
+                <!-- Agregá todas las provincias que necesites -->
+            </select>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="id_localidad">Localidad:</label>
+            <input type="text" name="localidad" id="id_localidad" class="form-control" required>
+        </div>
+
+        <div class="form-group mt-3">
+            <label for="id_direccion">Dirección exacta:</label>
+            <input type="text" name="direccion" id="id_direccion" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Confirmar Venta</button>
+    </form>
+
+    <a href="{% url 'servicios' cerveza.id %}" class="btn btn-secondary mt-3">Cancelar</a>
+    <a href="{% url 'cervezas' %}" class="btn btn-secondary mt-3">Cancelar</a>
+
+    <hr>
+    <h4>Fechas disponibles este mes</h4>
+    <div class="calendar-container table-responsive">
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+            }
+            .text-muted {
+                color: #ccc;
+            }
+            .text-success {
+                color: green;
+            }
+        </style>
+        {{ calendario_html|safe }}
+        <p><span class="text-success font-weight-bold">Números verdes:</span> días disponibles.</p>
+        <p><span class="text-muted">Gris:</span> días ocupados.</p>
+    </div>
+</div>
+{% endblock %}
+

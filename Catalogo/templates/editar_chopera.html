@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <h2 style="color: white;">Editar Chopera #{{ chopera.numero }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="{% url 'editar_stock_choperas' %}" class="btn btn-secondary">Volver</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="text-center mb-5">Servicios Disponibles</h1>
+
+  <div class="row justify-content-center g-4">
+    {% for servicio in servicios %}
+    <div class="col-12 col-sm-10 col-md-6 col-lg-4 d-flex justify-content-center">
+      <div class="card h-100 shadow-lg border-0" style="width: 100%; max-width: 22rem;">
+        {% if servicio.foto %}
+          <img src="{{ servicio.foto.url }}" class="card-img-top" alt="{{ servicio.nombre }}" style="height: 300px; object-fit: cover;">
+        {% endif %}
+
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title text-primary">{{ servicio.nombre }}</h5>
+          <p class="card-text text-muted mb-2">
+            <strong>Tipo:</strong> {{ servicio.tipo.nombre }}
+          </p>
+          <p class="card-text mb-2">
+            {{ servicio.descripcion }}
+          </p>
+          <p class="text-success mt-auto">Precio: ${{ servicio.precio }}</p>
+          <a href="{% url 'venta' cerveza.id servicio.id %}" class="btn btn-outline-success mt-3 w-100">Ordenar</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+      <div class="text-center ">
+        <a href="{% url 'editar_stock_choperas' %}" class="btn btn-outline-primary align-self-start mx-5 mb-3">Editar Stock de Choperas</a>
+        <a href="{% url 'editar_stock_barriles' cerveza.id %}" class="btn btn-outline-primary align-self-start mx-5 mb-3">Editar Stock de Barriles</a>
+    </div>
+    {% endif %}
+    
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-white">Estadísticas de Ventas</h2>
+
+  {% if mensaje %}
+    <div class="alert alert-info">{{ mensaje }}</div>
+  {% elif grafico %}
+    <img src="data:image/png;base64,{{ grafico }}" class="img-fluid mt-4" alt="Gráfico de ventas">
+  {% endif %}
+</div>
+{% endblock %}

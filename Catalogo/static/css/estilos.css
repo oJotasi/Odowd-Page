@@ -1,0 +1,90 @@
+
+.texto {
+    margin-top: 20vh;
+    margin-bottom: 20vh;
+    margin-left: 5vh;
+    margin-right: 5vh;
+}
+
+.redes {
+    height: 6vh;
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
+
+.redes:hover {
+    text-decoration: dotted;
+    filter: brightness(1.5);  
+}
+
+body {
+    background-color:rgb(12, 9, 42);
+    color: white;
+}
+
+
+p{
+    color: #bdcdd1;
+}
+
+a.nav-link{
+    color: #007bff;
+    font-size: 3vh;
+    transition: all 0.2s ease-in-out;
+}
+
+a.nav-link:hover {
+    color: #00bfff;
+    font-size: 4vh;
+}
+
+/* Cambiar el color de las etiquetas */
+.form-label {
+    color: #f3f3f3;
+    font-size: 1.2rem; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Hacer las etiquetas negritas */
+    margin-bottom: 10px; /* Espaciado adicional debajo de las etiquetas */
+    text-transform: uppercase; /* Convertir texto a mayúsculas */
+}
+
+.card{
+    background-color: #1c1b3a;
+    color: white;
+}
+  
+/*tablas*/
+td, th {
+    word-wrap: break-word;
+    white-space: normal !important;
+    max-width: 250px;
+}
+
+/*para mostrar los proyectos*/
+.img-proyecto{
+    max-width: 100%;
+    width: 40vh;
+    height: 40vh;
+    border-radius: 5%;
+}
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+}
+
+.tech-badge {
+    background-color: rgba(79, 70, 229, 0.2);
+    border: 1px solid #4338ca;
+    color: #e0e7ff;
+}
+
+/*footer*/
+.footer {
+    background-color: #0c092a;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1rem;
+    border-top: 1px solid #444;
+}
+  

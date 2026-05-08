@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="text-center mb-5">Catálogo de Cervezas</h1>
+
+  <div class="row g-4">
+    {% for cerveza in cervezas %}
+    <div class="col-12">
+      <div class="card flex-row shadow-lg border-0 mt-4">
+        {% if cerveza.foto %}
+        <img src="{{ cerveza.foto.url }}" class="img-fluid" alt="{{ cerveza.nombre }}" style="width: 250px; object-fit: cover;">
+        {% else %}
+        <img src="{% static 'img/default-beer.jpg' %}" class="img-fluid" alt="Sin imagen" style="width: 250px; object-fit: cover;">
+        {% endif %}
+
+        <div class="card-body d-flex flex-column justify-content-between">
+          <div>
+            <h4 class="card-title text-primary">{{ cerveza.nombre }}</h4>
+            <p class="card-text mb-1">
+              <strong>Estilo:</strong> {{ cerveza.estilo.nombre }}<br>
+              <strong>Alcohol:</strong> {{ cerveza.porcentaje_alcohol }}<br>
+              <strong>IBU:</strong> {{ cerveza.ibu }}
+            </p>
+            <p class="text-muted">{{ cerveza.descripcion }}</p>
+          </div>
+
+          <a href="{% url 'servicios' cerveza.id %}" class="btn btn-outline-primary align-self-start">Pedir</a>
+          {% if user.is_authenticated %}
+          <a href="{% url 'cerveza' cerveza.id %}" class="btn btn-outline-primary align-self-start">Ver Detalle</a>
+          {% endif %}
+
+          {% with cerveza.barriles.all as barriles %}
+          {% if barriles %}
+          <div class="mt-3">
+            <a><strong>Formatos disponibles:</strong></a>
+            <div>
+              {% for barril in barriles %}
+              <div class="alert alert-light">
+                <span style="color: black;">{{ barril.litros }}L - </span>
+                <span class="text-success">Precio: ${{ barril.calcular_precio }}</span> 
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+          {% endwith %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% if user.is_authenticated %}
+  <div class="text-center mt-5">
+    <a class="btn btn-success btn-lg" href="{% url 'cerveza_new' %}">Agregar Cerveza</a>
+    <a class="btn btn-primary" href="{% url 'grafico_ventas' %}">Grafico</a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+
